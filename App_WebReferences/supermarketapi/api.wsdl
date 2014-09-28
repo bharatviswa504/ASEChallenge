@@ -1,0 +1,1234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.SupermarketAPI.com" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.SupermarketAPI.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.SupermarketAPI.com">
+      <s:element name="GetGroceries">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroceriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroceriesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AllUSStates">
+        <s:complexType />
+      </s:element>
+      <s:element name="AllUSStatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AllUSStatesResult" type="tns:ArrayOfStoreState" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStoreState">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StoreState" nillable="true" type="tns:StoreState" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StoreState">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CitiesByState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SelectedState" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CitiesByStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CitiesByStateResult" type="tns:ArrayOfStoreCity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStoreCity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StoreCity" nillable="true" type="tns:StoreCity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StoreCity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StoresByCityState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SelectedCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SelectedState" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoresByCityStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoresByCityStateResult" type="tns:ArrayOfStore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Store" nillable="true" type="tns:Store" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Store">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Storename" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StoreId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StoresByZip">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoresByZipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoresByZipResult" type="tns:ArrayOfStore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchByProductName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchByProductNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchByProductNameResult" type="tns:ArrayOfProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Product">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Itemname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemCategory" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemImage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AisleNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SearchByItemID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchByItemIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchByItemIDResult" type="tns:ArrayOfProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StoreID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchForItemResult" type="tns:ArrayOfProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnStoresByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StoreName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnStoresByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnStoresByNameResult" type="tns:ArrayOfStore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COMMERCIAL_SearchByProductName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COMMERCIAL_SearchByProductNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COMMERCIAL_SearchByProductNameResult" type="tns:ArrayOfProduct_Commercial" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProduct_Commercial">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Product_Commercial" nillable="true" type="tns:Product_Commercial" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Product_Commercial">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Itemname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemCategory" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemImage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AisleNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pricing" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="COMMERCIAL_SearchByItemID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COMMERCIAL_SearchByItemIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COMMERCIAL_SearchByItemIDResult" type="tns:ArrayOfProduct_Commercial" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COMMERCIAL_SearchForItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StoreID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COMMERCIAL_SearchForItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COMMERCIAL_SearchForItemResult" type="tns:ArrayOfProduct_Commercial" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COMMERCIAL_GetGroceries">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COMMERCIAL_GetGroceriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COMMERCIAL_GetGroceriesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+      <s:element name="ArrayOfStoreState" nillable="true" type="tns:ArrayOfStoreState" />
+      <s:element name="ArrayOfStoreCity" nillable="true" type="tns:ArrayOfStoreCity" />
+      <s:element name="ArrayOfStore" nillable="true" type="tns:ArrayOfStore" />
+      <s:element name="ArrayOfProduct" nillable="true" type="tns:ArrayOfProduct" />
+      <s:element name="ArrayOfProduct_Commercial" nillable="true" type="tns:ArrayOfProduct_Commercial" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetGroceriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroceries" />
+  </wsdl:message>
+  <wsdl:message name="GetGroceriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroceriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AllUSStatesSoapIn">
+    <wsdl:part name="parameters" element="tns:AllUSStates" />
+  </wsdl:message>
+  <wsdl:message name="AllUSStatesSoapOut">
+    <wsdl:part name="parameters" element="tns:AllUSStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CitiesByStateSoapIn">
+    <wsdl:part name="parameters" element="tns:CitiesByState" />
+  </wsdl:message>
+  <wsdl:message name="CitiesByStateSoapOut">
+    <wsdl:part name="parameters" element="tns:CitiesByStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoresByCityStateSoapIn">
+    <wsdl:part name="parameters" element="tns:StoresByCityState" />
+  </wsdl:message>
+  <wsdl:message name="StoresByCityStateSoapOut">
+    <wsdl:part name="parameters" element="tns:StoresByCityStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoresByZipSoapIn">
+    <wsdl:part name="parameters" element="tns:StoresByZip" />
+  </wsdl:message>
+  <wsdl:message name="StoresByZipSoapOut">
+    <wsdl:part name="parameters" element="tns:StoresByZipResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchByProductNameSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchByProductName" />
+  </wsdl:message>
+  <wsdl:message name="SearchByProductNameSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchByProductNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchByItemIDSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchByItemID" />
+  </wsdl:message>
+  <wsdl:message name="SearchByItemIDSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchByItemIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchForItemSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchForItem" />
+  </wsdl:message>
+  <wsdl:message name="SearchForItemSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnStoresByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnStoresByName" />
+  </wsdl:message>
+  <wsdl:message name="ReturnStoresByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnStoresByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByProductNameSoapIn">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_SearchByProductName" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByProductNameSoapOut">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_SearchByProductNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByItemIDSoapIn">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_SearchByItemID" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByItemIDSoapOut">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_SearchByItemIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchForItemSoapIn">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_SearchForItem" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchForItemSoapOut">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_SearchForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_GetGroceriesSoapIn">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_GetGroceries" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_GetGroceriesSoapOut">
+    <wsdl:part name="parameters" element="tns:COMMERCIAL_GetGroceriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroceriesHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SearchText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGroceriesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="AllUSStatesHttpGetIn" />
+  <wsdl:message name="AllUSStatesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStoreState" />
+  </wsdl:message>
+  <wsdl:message name="CitiesByStateHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SelectedState" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CitiesByStateHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStoreCity" />
+  </wsdl:message>
+  <wsdl:message name="StoresByCityStateHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SelectedCity" type="s:string" />
+    <wsdl:part name="SelectedState" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresByCityStateHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="StoresByZipHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresByZipHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="SearchByProductNameHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchByProductNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="SearchByItemIDHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchByItemIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="SearchForItemHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="StoreID" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchForItemHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="ReturnStoresByNameHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="StoreName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReturnStoresByNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByProductNameHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByProductNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct_Commercial" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByItemIDHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByItemIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct_Commercial" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchForItemHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="StoreID" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchForItemHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct_Commercial" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_GetGroceriesHttpGetIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SearchText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_GetGroceriesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetGroceriesHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SearchText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGroceriesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="AllUSStatesHttpPostIn" />
+  <wsdl:message name="AllUSStatesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStoreState" />
+  </wsdl:message>
+  <wsdl:message name="CitiesByStateHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SelectedState" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CitiesByStateHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStoreCity" />
+  </wsdl:message>
+  <wsdl:message name="StoresByCityStateHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SelectedCity" type="s:string" />
+    <wsdl:part name="SelectedState" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresByCityStateHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="StoresByZipHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ZipCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresByZipHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="SearchByProductNameHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchByProductNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="SearchByItemIDHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchByItemIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="SearchForItemHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="StoreID" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchForItemHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="ReturnStoresByNameHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="StoreName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReturnStoresByNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByProductNameHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByProductNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct_Commercial" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByItemIDHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="ItemID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchByItemIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct_Commercial" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchForItemHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="StoreID" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_SearchForItemHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct_Commercial" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_GetGroceriesHttpPostIn">
+    <wsdl:part name="APIKEY" type="s:string" />
+    <wsdl:part name="SearchText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COMMERCIAL_GetGroceriesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:portType name="API_v1Soap">
+    <wsdl:operation name="GetGroceries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation gives an initial 10 items for autocomplete</wsdl:documentation>
+      <wsdl:input message="tns:GetGroceriesSoapIn" />
+      <wsdl:output message="tns:GetGroceriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AllUSStates">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All States</wsdl:documentation>
+      <wsdl:input message="tns:AllUSStatesSoapIn" />
+      <wsdl:output message="tns:AllUSStatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CitiesByState">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Cities within a state</wsdl:documentation>
+      <wsdl:input message="tns:CitiesByStateSoapIn" />
+      <wsdl:output message="tns:CitiesByStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresByCityState">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Stores within a City and State</wsdl:documentation>
+      <wsdl:input message="tns:StoresByCityStateSoapIn" />
+      <wsdl:output message="tns:StoresByCityStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresByZip">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Stores within a City and State</wsdl:documentation>
+      <wsdl:input message="tns:StoresByZipSoapIn" />
+      <wsdl:output message="tns:StoresByZipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByProductName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for a product by Product Name(LIMIT 50)</wsdl:documentation>
+      <wsdl:input message="tns:SearchByProductNameSoapIn" />
+      <wsdl:output message="tns:SearchByProductNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByItemID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns information for a specific product by ID</wsdl:documentation>
+      <wsdl:input message="tns:SearchByItemIDSoapIn" />
+      <wsdl:output message="tns:SearchByItemIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for Products(LIMIT 20)</wsdl:documentation>
+      <wsdl:input message="tns:SearchForItemSoapIn" />
+      <wsdl:output message="tns:SearchForItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnStoresByName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns ALL Stores by store name</wsdl:documentation>
+      <wsdl:input message="tns:ReturnStoresByNameSoapIn" />
+      <wsdl:output message="tns:ReturnStoresByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByProductName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for a product by Product Name(LIMIT 50)</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchByProductNameSoapIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchByProductNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByItemID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns information for a specific product by ID.Includes Pricing</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchByItemIDSoapIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchByItemIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchForItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for Products(LIMIT 150)</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchForItemSoapIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchForItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_GetGroceries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation gives an initial 20 items for autocomplete</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_GetGroceriesSoapIn" />
+      <wsdl:output message="tns:COMMERCIAL_GetGroceriesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="API_v1HttpGet">
+    <wsdl:operation name="GetGroceries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation gives an initial 10 items for autocomplete</wsdl:documentation>
+      <wsdl:input message="tns:GetGroceriesHttpGetIn" />
+      <wsdl:output message="tns:GetGroceriesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AllUSStates">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All States</wsdl:documentation>
+      <wsdl:input message="tns:AllUSStatesHttpGetIn" />
+      <wsdl:output message="tns:AllUSStatesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CitiesByState">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Cities within a state</wsdl:documentation>
+      <wsdl:input message="tns:CitiesByStateHttpGetIn" />
+      <wsdl:output message="tns:CitiesByStateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresByCityState">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Stores within a City and State</wsdl:documentation>
+      <wsdl:input message="tns:StoresByCityStateHttpGetIn" />
+      <wsdl:output message="tns:StoresByCityStateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresByZip">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Stores within a City and State</wsdl:documentation>
+      <wsdl:input message="tns:StoresByZipHttpGetIn" />
+      <wsdl:output message="tns:StoresByZipHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByProductName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for a product by Product Name(LIMIT 50)</wsdl:documentation>
+      <wsdl:input message="tns:SearchByProductNameHttpGetIn" />
+      <wsdl:output message="tns:SearchByProductNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByItemID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns information for a specific product by ID</wsdl:documentation>
+      <wsdl:input message="tns:SearchByItemIDHttpGetIn" />
+      <wsdl:output message="tns:SearchByItemIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for Products(LIMIT 20)</wsdl:documentation>
+      <wsdl:input message="tns:SearchForItemHttpGetIn" />
+      <wsdl:output message="tns:SearchForItemHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnStoresByName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns ALL Stores by store name</wsdl:documentation>
+      <wsdl:input message="tns:ReturnStoresByNameHttpGetIn" />
+      <wsdl:output message="tns:ReturnStoresByNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByProductName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for a product by Product Name(LIMIT 50)</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchByProductNameHttpGetIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchByProductNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByItemID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns information for a specific product by ID.Includes Pricing</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchByItemIDHttpGetIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchByItemIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchForItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for Products(LIMIT 150)</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchForItemHttpGetIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchForItemHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_GetGroceries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation gives an initial 20 items for autocomplete</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_GetGroceriesHttpGetIn" />
+      <wsdl:output message="tns:COMMERCIAL_GetGroceriesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="API_v1HttpPost">
+    <wsdl:operation name="GetGroceries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation gives an initial 10 items for autocomplete</wsdl:documentation>
+      <wsdl:input message="tns:GetGroceriesHttpPostIn" />
+      <wsdl:output message="tns:GetGroceriesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AllUSStates">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All States</wsdl:documentation>
+      <wsdl:input message="tns:AllUSStatesHttpPostIn" />
+      <wsdl:output message="tns:AllUSStatesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CitiesByState">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Cities within a state</wsdl:documentation>
+      <wsdl:input message="tns:CitiesByStateHttpPostIn" />
+      <wsdl:output message="tns:CitiesByStateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresByCityState">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Stores within a City and State</wsdl:documentation>
+      <wsdl:input message="tns:StoresByCityStateHttpPostIn" />
+      <wsdl:output message="tns:StoresByCityStateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresByZip">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns All Stores within a City and State</wsdl:documentation>
+      <wsdl:input message="tns:StoresByZipHttpPostIn" />
+      <wsdl:output message="tns:StoresByZipHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByProductName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for a product by Product Name(LIMIT 50)</wsdl:documentation>
+      <wsdl:input message="tns:SearchByProductNameHttpPostIn" />
+      <wsdl:output message="tns:SearchByProductNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByItemID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns information for a specific product by ID</wsdl:documentation>
+      <wsdl:input message="tns:SearchByItemIDHttpPostIn" />
+      <wsdl:output message="tns:SearchByItemIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for Products(LIMIT 20)</wsdl:documentation>
+      <wsdl:input message="tns:SearchForItemHttpPostIn" />
+      <wsdl:output message="tns:SearchForItemHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnStoresByName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns ALL Stores by store name</wsdl:documentation>
+      <wsdl:input message="tns:ReturnStoresByNameHttpPostIn" />
+      <wsdl:output message="tns:ReturnStoresByNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByProductName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for a product by Product Name(LIMIT 50)</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchByProductNameHttpPostIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchByProductNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByItemID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns information for a specific product by ID.Includes Pricing</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchByItemIDHttpPostIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchByItemIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchForItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation,returns search results for Products(LIMIT 150)</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_SearchForItemHttpPostIn" />
+      <wsdl:output message="tns:COMMERCIAL_SearchForItemHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_GetGroceries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This operation gives an initial 20 items for autocomplete</wsdl:documentation>
+      <wsdl:input message="tns:COMMERCIAL_GetGroceriesHttpPostIn" />
+      <wsdl:output message="tns:COMMERCIAL_GetGroceriesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="API_v1Soap" type="tns:API_v1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGroceries">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/GetGroceries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllUSStates">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/AllUSStates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CitiesByState">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/CitiesByState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByCityState">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/StoresByCityState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByZip">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/StoresByZip" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByProductName">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/SearchByProductName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByItemID">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/SearchByItemID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForItem">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/SearchForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnStoresByName">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/ReturnStoresByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByProductName">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_SearchByProductName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByItemID">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_SearchByItemID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchForItem">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_SearchForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_GetGroceries">
+      <soap:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_GetGroceries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="API_v1Soap12" type="tns:API_v1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGroceries">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/GetGroceries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllUSStates">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/AllUSStates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CitiesByState">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/CitiesByState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByCityState">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/StoresByCityState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByZip">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/StoresByZip" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByProductName">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/SearchByProductName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByItemID">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/SearchByItemID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForItem">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/SearchForItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnStoresByName">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/ReturnStoresByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByProductName">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_SearchByProductName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByItemID">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_SearchByItemID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchForItem">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_SearchForItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_GetGroceries">
+      <soap12:operation soapAction="http://www.SupermarketAPI.com/COMMERCIAL_GetGroceries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="API_v1HttpGet" type="tns:API_v1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetGroceries">
+      <http:operation location="/GetGroceries" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllUSStates">
+      <http:operation location="/AllUSStates" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CitiesByState">
+      <http:operation location="/CitiesByState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByCityState">
+      <http:operation location="/StoresByCityState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByZip">
+      <http:operation location="/StoresByZip" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByProductName">
+      <http:operation location="/SearchByProductName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByItemID">
+      <http:operation location="/SearchByItemID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForItem">
+      <http:operation location="/SearchForItem" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnStoresByName">
+      <http:operation location="/ReturnStoresByName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByProductName">
+      <http:operation location="/COMMERCIAL_SearchByProductName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByItemID">
+      <http:operation location="/COMMERCIAL_SearchByItemID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchForItem">
+      <http:operation location="/COMMERCIAL_SearchForItem" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_GetGroceries">
+      <http:operation location="/COMMERCIAL_GetGroceries" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="API_v1HttpPost" type="tns:API_v1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetGroceries">
+      <http:operation location="/GetGroceries" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllUSStates">
+      <http:operation location="/AllUSStates" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CitiesByState">
+      <http:operation location="/CitiesByState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByCityState">
+      <http:operation location="/StoresByCityState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresByZip">
+      <http:operation location="/StoresByZip" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByProductName">
+      <http:operation location="/SearchByProductName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByItemID">
+      <http:operation location="/SearchByItemID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForItem">
+      <http:operation location="/SearchForItem" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnStoresByName">
+      <http:operation location="/ReturnStoresByName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByProductName">
+      <http:operation location="/COMMERCIAL_SearchByProductName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchByItemID">
+      <http:operation location="/COMMERCIAL_SearchByItemID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_SearchForItem">
+      <http:operation location="/COMMERCIAL_SearchForItem" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COMMERCIAL_GetGroceries">
+      <http:operation location="/COMMERCIAL_GetGroceries" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="API_v1">
+    <wsdl:port name="API_v1Soap" binding="tns:API_v1Soap">
+      <soap:address location="http://www.supermarketapi.com/api.asmx" />
+    </wsdl:port>
+    <wsdl:port name="API_v1Soap12" binding="tns:API_v1Soap12">
+      <soap12:address location="http://www.supermarketapi.com/api.asmx" />
+    </wsdl:port>
+    <wsdl:port name="API_v1HttpGet" binding="tns:API_v1HttpGet">
+      <http:address location="http://www.supermarketapi.com/api.asmx" />
+    </wsdl:port>
+    <wsdl:port name="API_v1HttpPost" binding="tns:API_v1HttpPost">
+      <http:address location="http://www.supermarketapi.com/api.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
