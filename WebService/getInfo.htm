@@ -1,0 +1,65 @@
+﻿<html>
+<head>
+<title> Information about Groccery </title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>page demo</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css">
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+	<script type="text/javascript" src="soapclient.js"></script>	
+</head>
+<body>
+<h1> Get Information About Grocceries</h1>
+<h2> The Information like Its freshness and seasonal nature </h2>
+<form action="#" name="f1" id="f1">
+<table>
+<tr>
+	<td>
+		<label> Enter Item:</label>
+	</td>
+	<td>
+		<input type="text" id="item" name="item"/>
+	</td>
+</tr>
+<tr>
+<td> </td>
+<td>
+<button id="b1">Get Information </button>
+</td>
+</tr>
+</table>
+</form>
+</div id="d1"> </div>
+<script type="text/javascript">
+
+    var url = "http://kc-sce-cs551-2.kc.umkc.edu/aspnet_client/Group11/WebSite4/WebService.asmx";
+
+
+
+    function getDetails() {
+        document.getElementById("d1").innerHTML = document.f1.item.value + " is Fresh and Seasonal";
+        alert("It is Fresh and Seasonal");
+        var p1 = new SOAPClientParameters();
+        p1.add("name1", document.f1.item.value);
+        SOAPClient.invoke(url, "getFreshness", p1, true, getDetails_callBack);
+
+    }
+
+    function getDetails_callBack(r) {
+        alert(r);
+    }
+
+    function onClicked() {
+        getDetails();
+    }
+
+    var b = document.getElementById("b1");
+    b.addEventListener('click', OnClicked, false);
+	
+</script>
+
+</body>
+
+</html>

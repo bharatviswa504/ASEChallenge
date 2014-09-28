@@ -1,0 +1,6 @@
+create table freshTable (
+name varchar(50),
+dist varchar(50),
+type varchar(50)
+
+);

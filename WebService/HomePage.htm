@@ -1,0 +1,276 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>page demo</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css">
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+	<script type="text/javascript" src="soapclient.js"></script>	
+	
+</head>
+
+<body>
+
+
+	<div data-role="page" id="home">
+		<div data-role="header">
+			<h1> Welcome To Groccery Store Help</h1>
+		</div>
+		<div data-role="main">
+		<a href="#getstores" data-role="button"> Get Near By Stores </a>
+		<a href="#enteritems" data-role="button">Enter Items List </a>
+		<a href="#getdirections" data-role="button"> Get Directions For Stores </a>
+		<a href="http://localhost:49174/WebSite4/getInfo.htm" data-role="button"> Get Information of Groccery  </a>
+		</div>
+	</div>
+	
+	
+	
+	<div data-role="page" id="getfresh">
+		<div data-role="header">
+			<h1>Get Information about Items </h1>
+		</div>
+		
+		<div data-role="main">
+			<label>Enter to Know About Item:</label><input type="text" id="item1"/>
+			<button id="fresh"> Get Details</button>
+		</div>
+	</div>
+	
+	
+	
+	
+	<div data-role="page" id="getdirections">
+		<div data-role="header">
+		<h1> Welcome to Get Directions for Stores </h1>
+		<a href="#" class="ui-btn ui-corner-all" data-rel="back">Go Back</a>
+		</div>
+		<div data-role="main">
+		<table>
+    <tr>
+        <th> From: </th>
+        <th> <input type="text" id="from"/> </th>
+    </tr>
+    <tr>
+        <th> Destination: </th>
+        <th> <input type="text" id="dest"/> </th>
+        </tr>
+        </table>
+<table>
+    <tr>
+        <th> Method:    </th>
+        <th>
+ <select id ="typeOfTrans">
+  <option value="drive">Driving</option>
+  <option value="bicyle">Bicycle</option>
+  <option value="walk">Walking</option>
+  <option value="trans">Transit</option>
+</select>   
+        </th>
+    </tr>
+</table>
+<button id="button">Show Direction</button>
+<div id="map_canvas" style="height: 400px; width: 400px"></div>
+
+		</div>
+		</div>
+		
+	
+	
+	
+	
+	
+	
+	<div data-role="page" id="getstores">
+		<div data-role="header">
+			<h1>Find Near By Stores </h1>
+			<a href="#" class="ui-btn ui-corner-all" data-rel="back">Go Back</a>
+		</div>
+		<div data-role="main">
+			<label> Enter Pin: </label>
+			<input type="text" name="txtName8" id="txtName8" value="95138" />
+			<label> Enter APIKey:</label>
+			<input type="text" name="txtName7" id="txtName7" value="37be029d1e" />
+			<button id="gett">Get Stores </button>
+		</div>
+	</div>
+	
+	
+	
+
+	
+	
+	
+	
+	<div data-role="page"id="enteritems">
+		<div data-role="header">
+			<a href="#" class="ui-btn ui-corner-all" data-rel="back">Go Back</a>
+			<h1>Enter List Of Items To Purchase In Store</h1>
+		</div>
+		<div data-role="main">
+			<div class="input_fields_wrap">
+			<button class="add_field_button" data-inline="true">Click me to Enter Items</button>
+			<div class="input_fields_wrap">
+			<button id="submitstore" data-inline="true">Submit To Store </button>
+			<div><input type="text" name="mytext[]"/></div>
+			</div>
+
+		</div>
+
+		
+		
+	
+<script type="text/javascript">
+
+    var x = 1;
+
+    var getnear = document.getElementById("gett");
+    var url = "http://www.supermarketapi.com/api.asmx";
+
+    var onClick = function () {
+        StoresByZip();
+    };
+
+    getnear.addEventListener('click', onClick, false);
+
+    function StoresByZip() {
+        alert("hello");
+        var pl = new SOAPClientParameters();
+        p1.add("APIKEY", document.getElementById("txtName7").value);
+        p1.add("ZipCode", document.getElementById("txtName8").value);
+        SOAPClient.invoke(url, "StoresByZip", pl, true, StoresByZip_callBack);
+    }
+
+    function StoresByZip_callBack(r) {
+        alert(r);
+    }
+
+    var submitto = document.getElementById("submitstore");
+
+
+
+    var onClickSubmit = function () {
+        alert("Items Submitted to Store");
+    }
+
+    submitto.addEventListener('click', onClickSubmit, false);
+
+
+    $(document).ready(function () {
+        var max_fields = 100; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+
+        $(add_button).click(function (e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+                x++; //text box increment
+                $(wrapper).append('<div><input type="text" name="mytext[]" placeholder="Enter Items"/><a href="#" class="remove_field">Remove</a></div>');
+            }
+        });
+
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
+    });
+
+
+
+
+
+    ///////  Direction ///////////////////
+    var directionDisplay;
+    var directionsService = new google.maps.DirectionsService();     //Create a DirectionsService object which is required to communicate with the Google Maps API Direction Service
+    var map2;
+    function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();        //Create a DirectionsRenderer object to render the directions results
+        var center = new google.maps.LatLng(0, 0);    //Map is centered at 0,0
+        var myOptions =
+    {
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: center
+    }
+        map2 = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        directionsDisplay.setMap(map2);
+        var start = document.getElementById("from").value;     //Set the source/ origin
+        var end = document.getElementById("dest").value;  //Set the destination
+        var typeOfTrans = document.getElementById("typeOfTrans").value;
+        var request;
+        if (typeOfTrans == "drive") {
+            request =
+        {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING          //Current travel mode is DRIVING. You can change to BICYCLING or WALKING and see the changes.
+        };
+        }
+        else if (typeOfTrans == "walk") {
+            request =
+            {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.DirectionsTravelMode.WALKING
+            };
+        }
+        else if (typeOfTrans == "bicycle") {
+            request =
+            {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.DirectionsTravelMode.BICYCLING
+            };
+        }
+        else if (typeOfTrans == "transit") {
+            request =
+            {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.DirectionsTravelMode.TRANSIT
+            };
+        }
+
+
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) //Check if request is successful.
+            {
+                directionsDisplay.setDirections(response);         //Display the directions result
+            }
+        });
+    }
+
+    var button = document.getElementById('button');
+
+    var onClick = function () {
+        initialize();
+    };
+
+    button.addEventListener('click', onClick, false);
+
+
+    var freshness = document.getElementById('fresh');
+    var item = document.getElementById('item1').value;
+    var url = "http://localhost/aspnet_client/WebSite4/WebService.asmx";
+    var onClick2 = function () {
+        getInfo(item);
+    }
+
+    function getInfo(item) {
+        var p1 = new SOAPClientParameters();
+        alert("Grocery Item is fresh and seasonal");
+        p1.add("name1", item);
+        SOAPClient.invoke(url, p1, getFreshness, true, getInfo_callBack);
+        
+    }
+
+    function getInfo_callBack(r) {
+        alert(r);
+    }
+    freshness.addEventListener('click', onClick2, false);
+	</script>	
+</body>
+</html>
